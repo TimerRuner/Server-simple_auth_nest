@@ -16,6 +16,10 @@ export class UserController {
     return this.userService.getAll()
   }
 
+  @Get(":email")
+  async getUserByEmail(@Param("email") email: string) {
+    return this.userService.getByEmail(email)
+  }
 
   @Patch("update/:id")
   async updateUser(@Param("id") id: number, @Body() dto: CreateUserDto) {

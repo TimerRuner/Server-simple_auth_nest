@@ -24,6 +24,10 @@ export class UserService {
     return await this.userRepository.findAll({include: [Roles]})
   }
 
+  async getByEmail(email: string){
+    return await this.userRepository.findOne({where: {email}, include: [Roles]})
+  }
+
   async delete(id) {
     const deletedRow = await this.userRepository.destroy({ where: {id} })
     if (deletedRow === 0) {
