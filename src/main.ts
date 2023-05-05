@@ -1,8 +1,11 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 
-async function bootstrap() {
+async function start() {
+  const PORT = process.env.PORT || 3000
   const app = await NestFactory.create(AppModule);
-  await app.listen(3000);
+
+  app.setGlobalPrefix("api")
+  await app.listen(PORT, () => console.log(`Server starts at port: ${PORT}`));
 }
-bootstrap();
+start();
